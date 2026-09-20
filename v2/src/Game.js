@@ -1,4 +1,5 @@
 import Player from './Player.js';
+import VirtualDPad from './VirtualDPad.js';
 
 export default class Game extends Phaser.Scene {
     constructor () {
@@ -40,6 +41,9 @@ export default class Game extends Phaser.Scene {
         gameOverText.setOrigin(0.5);
         this.pressText = this.add.text( 168, 320, 'Press any key to re-start', { fontSize: '32px', fill: '#000' });
         this.input.keyboard.on('keydown', (event) => {
+            this.scene.start('Game');
+        });
+        this.input.on('pointerdown', (pointer) => {
             this.scene.start('Game');
         });
     }
@@ -103,37 +107,19 @@ export default class Game extends Phaser.Scene {
         this.physics.add.collider(this.bombs, this.platforms);
         this.physics.add.collider(this.player, this.bombs, this.hitBomb, null, this);
 
-        const upButton = this.add.image(735, 430, 'upButton').setInteractive();
-        upButton.on('pointerdown', () => {
-            this.player.setUp();
-        });
-
-        const downButton = this.add.image(735, 570, 'downButton').setInteractive();
-        downButton.on('pointerdown', () => {
-            this.player.setDown();
-        });
-
-        const leftButton = this.add.image(700, 500, 'leftButton').setInteractive();
-        leftButton.on('pointerdown', () => {
-            this.player.setLeft();
-        });
-
-        const rightButton = this.add.image(770, 500, 'rightButton').setInteractive();
-        rightButton.on('pointerdown', () => {
-            this.player.setRight();
-        });
+        this.dpad = new VirtualDPad(this, 700, 500)
     }
 
     update () {
-        if(this.cursors.left.isDown) {
+        if(this.cursors.left.isDown || this.dpad.direction === 'left' ) {
             this.player.setLeft();
-        } else if (this.cursors.right.isDown) {
+        } else if (this.cursors.right.isDown || this.dpad.direction === 'right') {
             this.player.setRight();
         } else {
             this.player.setTurn();
         }
 
-        if(this.cursors.up.isDown && this.player.body.touching.down) {
+        if((this.cursors.up.isDown && this.player.body.touching.down) || (this.dpad.direction === 'up' && this.player.body.touching.down)) {
             this.player.setUp();
         }
 
