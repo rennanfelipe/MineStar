@@ -1,5 +1,6 @@
 import PreLoader from "./PreLoader.js";
 import Game from "./Game.js";
+import SplashScreen from "./SplashScreen.js";
 
 const config = {
     type: Phaser.AUTO,
@@ -12,7 +13,7 @@ const config = {
             debug: false
         }
     },
-    scene: [ PreLoader, Game ]
+    scene: [ PreLoader, Game, SplashScreen ]
 };
 
 let game = new Phaser.Game(config);
