@@ -1,0 +1,25 @@
+{
+  "name": "mine-star",
+  "version": "1.0.0",
+  "description": "My first game developed with Phaser 3",
+  "homepage": "https://github.com/rennanfelipe/MineStar#readme",
+  "bugs": {
+    "url": "https://github.com/rennanfelipe/MineStar/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rennanfelipe/MineStar.git"
+  },
+  "license": "MIT",
+  "author": "Rennan Felipe",
+  "type": "commonjs",
+  "main": "index.html",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^8.3.0"
+  }
+}
