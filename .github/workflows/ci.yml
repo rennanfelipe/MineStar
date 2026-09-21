@@ -2,8 +2,8 @@ name: CI
 on:
   push:
     branches: 
-     - feature/*
-     - feat/*
+     - 'feature/*'
+     - 'feat/*'
 
 jobs:
   CI:
@@ -22,6 +22,17 @@ jobs:
 
       - name: Run lint
         run: npm run lint
+
+      - name: Run Semgrep
+        uses: semgrep/semgrep-action@v1
+        with:
+          config: >-
+            p/javascript
+
+      - name: Run Gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Run CI
         run: npm run ci
