@@ -1,5 +1,3 @@
-import Player from './Player.js';
-
 export default class SplashScreen extends Phaser.Scene {
     constructor () {
         super('SplashScreen');
@@ -27,7 +25,7 @@ export default class SplashScreen extends Phaser.Scene {
         });
 
         this.pressText = this.add.text(x - 200, y + 140, 'Press any key to start', { fontSize: '32px', fill: '#000' });
-        this.input.keyboard.on('keydown', (event) => {
+        this.input.keyboard.on('keydown', () => {
             this.scene.start('Game');
         });
 

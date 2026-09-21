@@ -16,4 +16,4 @@ const config = {
     scene: [ PreLoader, Game, SplashScreen ]
 };
 
-let game = new Phaser.Game(config);
+new Phaser.Game(config);

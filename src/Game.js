@@ -33,17 +33,17 @@ export default class Game extends Phaser.Scene {
         }
     }
 
-    hitBomb(player, bomb) {
+    hitBomb(player) {
         this.physics.pause();
         this.player.hitBomb(player);
 
         let gameOverText = this.add.text(400, 300, 'Game Over', { fontSize: '64px', fill: '#000' });
         gameOverText.setOrigin(0.5);
         this.pressText = this.add.text( 168, 320, 'Press any key to re-start', { fontSize: '32px', fill: '#000' });
-        this.input.keyboard.on('keydown', (event) => {
+        this.input.keyboard.on('keydown', () => {
             this.scene.start('Game');
         });
-        this.input.on('pointerdown', (pointer) => {
+        this.input.on('pointerdown', () => {
             this.scene.start('Game');
         });
     }

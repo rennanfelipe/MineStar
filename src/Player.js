@@ -11,8 +11,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
     hitBomb(player) {
         player.setTint(0xff0000);
-        let anim = player.anims.play('turn');
-        console.log('Player hit bomb, animation:', anim);
+        player.anims.play('turn');
     }
 
     setLeft() {
